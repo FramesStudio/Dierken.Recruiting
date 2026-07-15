@@ -681,7 +681,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <p class="hero-tagline">
         <strong>Faires Geld. Kurze Wege. Freitag 13 Uhr Feierabend.</strong><br>
-        Kein Anschreiben, kein Lebenslauf nötig – bewirb dich in 3 Minuten.
+        Kein Anschreiben, kein Lebenslauf nötig – bewirb dich in 30 Sekunden.
       </p>
 
       <div class="perks">
@@ -704,7 +704,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="form-card" id="form">
       <div class="form-card-head">
         <h2>Kurzbewerbung</h2>
-        <p>3 Minuten – mehr brauchen wir nicht von dir.</p>
+        <p>30 Sekunden – mehr brauchen wir nicht von dir.</p>
       </div>
 
       <form id="applyForm" novalidate>
@@ -745,14 +745,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <textarea id="nachricht" placeholder="Was bringst du mit?"></textarea>
         </div>
 
-        <div class="form-group">
-          <div class="upload-zone" id="uploadZone">
-            <input type="file" id="fileInput" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png">
-            <div style="font-size:1rem;margin-bottom:2px">📎</div>
-            <div class="upload-txt"><strong>Datei wählen</strong> oder hierher ziehen</div>
-            <div class="file-ok" id="fileOk"></div>
-          </div>
-        </div>
+
 
         <button type="submit" class="submit-btn">✔ Jetzt unverbindlich bewerben</button>
 
@@ -907,7 +900,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="step-circle">1</div>
         <div class="step-icon">📝</div>
         <h3>Formular</h3>
-        <p>3 Minuten. Nur Name, Nummer & Erfahrung – fertig.</p>
+        <p>30 Sekunden. Nur Name, Nummer & Erfahrung – fertig.</p>
       </div>
       <div class="step">
         <div class="step-circle">2</div>
@@ -1003,7 +996,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <section class="cta-final">
   <div class="cta-final-inner">
     <h2>Bereit für den Wechsel?</h2>
-    <p>3 Minuten Bewerbung – wir melden uns in 48 Stunden.</p>
+    <p>30 Sekunden Bewerbung – wir melden uns in 48 Stunden.</p>
     <a href="#form" class="cta-btn">Jetzt bewerben</a>
   </div>
 </section>
@@ -1040,29 +1033,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <script>
 // Form
 const form       = document.getElementById('applyForm');
-const fileInput  = document.getElementById('fileInput');
-const uploadZone = document.getElementById('uploadZone');
-const fileOk     = document.getElementById('fileOk');
 const modalBg    = document.getElementById('modalBg');
 
-fileInput.addEventListener('change', () => {
-  if (fileInput.files.length) {
-    fileOk.textContent = '✓ ' + fileInput.files[0].name;
-    fileOk.style.display = 'block';
-  }
-});
 
-['dragover','dragenter'].forEach(ev =>
-  uploadZone.addEventListener(ev, e => { e.preventDefault(); uploadZone.classList.add('dragover'); })
-);
-uploadZone.addEventListener('dragleave', () => uploadZone.classList.remove('dragover'));
-uploadZone.addEventListener('drop', e => {
-  e.preventDefault(); uploadZone.classList.remove('dragover');
-  if (e.dataTransfer.files.length) {
-    fileOk.textContent = '✓ ' + e.dataTransfer.files[0].name;
-    fileOk.style.display = 'block';
-  }
-});
 
 form.addEventListener('submit', async e => {
   e.preventDefault();
@@ -1110,7 +1083,6 @@ form.addEventListener('submit', async e => {
       modalBg.classList.add('open');
       document.body.style.overflow = 'hidden';
       form.reset();
-      fileOk.style.display = 'none';
     } else {
       const json = await res.json().catch(() => ({}));
       console.error('Formspree error:', res.status, json);
@@ -1134,7 +1106,6 @@ function closeModal() {
   modalBg.classList.remove('open');
   document.body.style.overflow = '';
   form.reset();
-  fileOk.style.display = 'none';
 }
 
 modalBg.addEventListener('click', e => { if (e.target === modalBg) closeModal(); });
